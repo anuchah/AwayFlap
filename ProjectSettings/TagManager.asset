@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Obstacle
+  - Coin
+  - Logic
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Player
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 2428313371
+    locked: 0
+  - name: Obstacle
+    uniqueID: 710779203
+    locked: 0
+  - name: Foreground
+    uniqueID: 2798716705
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Coins
+    uniqueID: 2799748917
+    locked: 0
+  - name: Player
+    uniqueID: 1778569741
+    locked: 0
+  - name: UI
+    uniqueID: 1668391195
+    locked: 0
