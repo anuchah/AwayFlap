@@ -7,16 +7,15 @@ public class EagleScript : MonoBehaviour
 {
     [SerializeField]
     public float jumpFoce = 4f;
+    [SerializeField]
     public bool eagleAlive = true;
-    public static int numberOfCoins;
     private Rigidbody2D rb2D;
     private Animator animator;
 
-    private static EagleScript instance;
+    public static EagleScript instance;
 
     private void Awake()
     {
-        if (!instance)
             instance = this;
     }
 
@@ -55,6 +54,8 @@ public class EagleScript : MonoBehaviour
         animator.Play("Die");
         animator.SetTrigger("isDeath");
         Invoke("DestroyObject", 5f);
+        CoinManager.instance.EndRound();
+        ScoreManager.instance.EndRound();
         SceneManager.LoadScene(3);
     }
 

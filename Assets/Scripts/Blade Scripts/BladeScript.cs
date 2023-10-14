@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class BladeScript : MonoBehaviour
 {
+    public static BladeScript instance;
+
     [SerializeField]
     public float rotateSpeed = 0.2f;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Update()
     {
