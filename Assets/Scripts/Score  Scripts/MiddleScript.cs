@@ -6,6 +6,7 @@ public class MiddleScript : MonoBehaviour
 {
     public static MiddleScript instance;
     public ScoreManager scoreManager;
+    private EagleScript player;
 
     private void Awake()
     {
@@ -15,11 +16,12 @@ public class MiddleScript : MonoBehaviour
     private void Start()
     {
         scoreManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<ScoreManager>();
+         player = GameObject.FindGameObjectWithTag("Player").GetComponent<EagleScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 3)
+        if (other.gameObject.layer == 3 && player.isAlive)
         {
             scoreManager.AddScore(1);
         }

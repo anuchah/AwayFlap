@@ -45,8 +45,7 @@ public class ScoreManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("PlayerScore", playerScore);
         PlayerPrefs.Save();
-
-        // Reset the player's score for the next round
+        
         playerScore = 0;
     }
 

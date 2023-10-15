@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CoinAmount : MonoBehaviour
 {
-  
-    public Text lastestCoin;
+    public TextMeshProUGUI totalCoinsText;
 
-    void Start()
+    private void Start()
     {
-        GetCoinAmount();
+        GetCoins();
     }
 
-    private void GetCoinAmount()
+    public void GetCoins()
     {
-        int coinAmount = PlayerPrefs.GetInt("TotalCoinsEarned", 0);
-        lastestCoin.text = coinAmount.ToString();
+        totalCoinsText.text = PlayerPrefs.GetInt("TotalScore", 0).ToString();
     }
 }

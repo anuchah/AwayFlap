@@ -7,16 +7,16 @@ public class EagleScript : MonoBehaviour
 {
     [SerializeField]
     public float jumpFoce = 4f;
-    [SerializeField]
-    public bool eagleAlive = true;
+    public bool isAlive = true;
     private Rigidbody2D rb2D;
     private Animator animator;
-
     public static EagleScript instance;
+    public AudioManagerScript audioManager;
 
     private void Awake()
     {
-            instance = this;
+        instance = this;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
     }
 
     private void Start()
@@ -27,11 +27,14 @@ public class EagleScript : MonoBehaviour
 
     private void Update()
     {
-        if (!eagleAlive)
+        if (!isAlive)
             return;
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        {
             HandleFlap();
+            audioManager.PlaySFX(audioManager.fly);
+        }
 
     }
 
@@ -44,23 +47,33 @@ public class EagleScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
+            if (!isAlive)
+                return;
             HandleDie();
         }
     }
 
     private void HandleDie()
     {
-        eagleAlive = false;
-        animator.Play("Die");
-        animator.SetTrigger("isDeath");
-        Invoke("DestroyObject", 5f);
+        isAlive = false;
         CoinManager.instance.EndRound();
         ScoreManager.instance.EndRound();
-        SceneManager.LoadScene(3);
+        animator.Play("Die");
+        animator.SetTrigger("isDeath");
+        audioManager.PlaySFX(audioManager.gameOver);
+        Invoke("DestroyObject", 3f);
+        Invoke("Delay", 3f);
+        
     }
 
     void DestroyObject()
     {
         Destroy(gameObject);
     }
+
+    void Delay()
+    {
+        SceneManager.LoadScene(2);
+    }
+
 }

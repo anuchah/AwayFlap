@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CoinEndRound : MonoBehaviour
 {
+    public static CoinEndRound instance;
     public Text coinOfRound;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -14,7 +21,6 @@ public class CoinEndRound : MonoBehaviour
 
     private void GetCoinAmount()
     {
-        int coinAmount = PlayerPrefs.GetInt("PlayerCoin", 0);
-        coinOfRound.text = coinAmount.ToString();
+        coinOfRound.text = CoinManager.instance.GetCoinScore().ToString();
     }
 }
