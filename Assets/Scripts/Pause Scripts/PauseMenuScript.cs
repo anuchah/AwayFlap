@@ -6,14 +6,12 @@ using UnityEngine.SceneManagement;
 public class PauseMenuScript : MonoBehaviour
 {
     public static PauseMenuScript instance;
-    public AudioManagerScript audioManager;
     public GameObject pauseMenuUI;
     public static bool isPaused = false;
 
     private void Awake()
     {
         instance = this;
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
     }
 
     private void Update()
@@ -23,12 +21,12 @@ public class PauseMenuScript : MonoBehaviour
             if (isPaused)
             {
                 ResumeGame();
-                audioManager.PlaySFX(audioManager.buttonPanel);
+                AudioManagerScript.instance.PlaySFX(AudioManagerScript.instance.buttonPanel);
             }
             else
             {
                 PauseGame();
-                audioManager.PlaySFX(audioManager.buttonPanel);
+                AudioManagerScript.instance.PlaySFX(AudioManagerScript.instance.buttonPanel);
             }
         }
     }
@@ -57,5 +55,6 @@ public class PauseMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
+        isPaused = false;
     }
 }

@@ -16,12 +16,12 @@ public class MiddleScript : MonoBehaviour
     private void Start()
     {
         scoreManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<ScoreManager>();
-         player = GameObject.FindGameObjectWithTag("Player").GetComponent<EagleScript>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<EagleScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 3 && player.isAlive)
+        if (other.gameObject.tag == "Player" && player.isAlive)
         {
             scoreManager.AddScore(1);
         }

@@ -6,8 +6,8 @@ public class CoinScript : MonoBehaviour
 {
     public static CoinScript instance;
     private CoinManager coinManager;
+    private AudioManagerScript audioManager;
     private EagleScript player;
-    public AudioManagerScript audioManager;
     private void Awake()
     {
         instance = this;
@@ -15,9 +15,9 @@ public class CoinScript : MonoBehaviour
 
     private void Start()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
         coinManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<CoinManager>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<EagleScript>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

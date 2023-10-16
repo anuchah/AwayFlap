@@ -11,18 +11,18 @@ public class EagleScript : MonoBehaviour
     private Rigidbody2D rb2D;
     private Animator animator;
     public static EagleScript instance;
-    public AudioManagerScript audioManager;
+    private AudioManagerScript audioManager;
 
     private void Awake()
     {
         instance = this;
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
     }
 
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManagerScript>();
     }
 
     private void Update()
@@ -49,9 +49,11 @@ public class EagleScript : MonoBehaviour
         {
             if (!isAlive)
                 return;
+            audioManager.PlaySFX(audioManager.gameOver);
             HandleDie();
         }
     }
+
 
     private void HandleDie()
     {
@@ -60,10 +62,9 @@ public class EagleScript : MonoBehaviour
         ScoreManager.instance.EndRound();
         animator.Play("Die");
         animator.SetTrigger("isDeath");
-        audioManager.PlaySFX(audioManager.gameOver);
         Invoke("DestroyObject", 3f);
         Invoke("Delay", 3f);
-        
+
     }
 
     void DestroyObject()
